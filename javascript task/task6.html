@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instagram Login</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+        }
+        .login-container {
+            width: 400px;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        .login-container h1 {
+            font-family: 'Lobster', cursive;
+            margin-bottom: 20px;
+        }
+        .input-group {
+            position: relative;
+            margin-bottom: 20px;
+        }
+        .input-group input {
+            width: 90%;
+            padding: 10px 10px 10px 35px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .input-group img {
+            position: absolute;
+            top: 8px;
+            left: 10px;
+            width: 20px;
+            height: 20px;
+        }
+        .login-container button {
+            width: 100%;
+            padding: 10px;
+            background-color: #3897f0;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .login-container .options {
+            display: flex;
+            justify-content: space-between;
+            margin: 10px 0;
+        }
+        .login-container .options a {
+            color: #3897f0;
+            text-decoration: none;
+        }
+        .login-container .options input {
+            margin: 0;
+        }
+        .login-container .signup {
+            margin-top: 20px;
+        }
+        .login-container .signup a {
+            color: #3897f0;
+            text-decoration: none;
+        }
+        .error {
+            color: red;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <h1>Instagram</h1>
+        <form id="loginForm" onsubmit="return validateLoginForm()">
+            <div class="input-group">
+                <img src="https://img.icons8.com/ios-glyphs/30/000000/user--v1.png" alt="username icon">
+                <input type="text" id="username" name="username" placeholder="Username">
+                <span class="error" id="usernameError">This field is required</span>
+            </div>
+            <div class="input-group">
+                <img src="https://img.icons8.com/ios-glyphs/30/000000/lock--v1.png" alt="password icon">
+                <input type="password" id="password" name="password" placeholder="Password">
+                <span class="error" id="passwordError">This field is required</span>
+            </div>
+            <button type="submit">Log in</button>
+            <div class="options">
+                <label><input type="checkbox" name="remember"> Remember me</label>
+                <a href="#">Forgot Password?</a>
+            </div>
+        </form>
+        <div class="signup">
+            Don't have an account? <a href="#">Sign up here.</a>
+        </div>
+    </div>
+
+    <script>
+        function validateLoginForm() {
+            let valid = true;
+
+            // Validate username
+            const username = document.getElementById('username').value;
+            const usernameError = document.getElementById('usernameError');
+            if (username === '') {
+                usernameError.style.display = 'inline';
+                valid = false;
+            } else {
+                usernameError.style.display = 'none';
+            }
+
+            // Validate password
+            const password = document.getElementById('password').value;
+            const passwordError = document.getElementById('passwordError');
+            if (password === '') {
+                passwordError.style.display = 'inline';
+                valid = false;
+            } else {
+                passwordError.style.display = 'none';
+            }
+
+            return valid;
+        }
+
+        // Hide all error messages on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            document.getElementById('usernameError').style.display = 'none';
+            document.getElementById('passwordError').style.display = 'none';
+        });
+    </script>
+</body>
+</html>

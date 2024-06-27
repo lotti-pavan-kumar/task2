@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Train Animation</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+        .train-container {
+            position: relative;
+            width: 100%;
+            height: 200px;
+            overflow: hidden;
+            background-color: #f0f0f0;
+            margin-top: 20px;
+        }
+        .train {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background: url("train.png") no-repeat;
+            background-size: contain;
+            top: 50%;
+            left: 0;
+            transform: translateY(-50%);
+        }
+        .controls {
+            margin-top: 20px;
+        }
+        .controls button {
+            padding: 10px 20px;
+            margin: 0 10px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h2>Click the following buttons to handle animation</h2>
+    <div class="train-container">
+        <div class="train" id="train"></div>
+    </div>
+    <div class="controls">
+        <button onclick="startAnimation()">Start</button>
+        <button onclick="stopAnimation()">Stop</button>
+    </div>
+
+    <script>
+        let train = document.getElementById('train');
+        let trainAnimation;
+        let pos = 0;
+
+        function startAnimation() {
+            if (!trainAnimation) {
+                trainAnimation = setInterval(frame, 10);
+            }
+        }
+
+        function frame() {
+            if (pos >= window.innerWidth) {
+                pos = -100; 
+            } else {
+                pos++;
+                train.style.left = pos + 'px';
+            }
+        }
+
+        function stopAnimation() {
+            clearInterval(trainAnimation);
+            trainAnimation = null;
+        }
+    </script>
+</body>
+</html>
